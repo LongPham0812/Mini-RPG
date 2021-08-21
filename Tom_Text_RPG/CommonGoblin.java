@@ -6,12 +6,20 @@ public class CommonGoblin implements Entity
     private int hitpoint;
     private int attack;
     private int defense;
+    private int playHp;
+    private int playAtt;
+    private int playDef;
+    private int playTotHp;
     
-    public CommonGoblin(int hp, int a, int d)
+    public CommonGoblin(int hp, int a, int d, int php, int pthp, int pa, int pd)
     {
         hitpoint = hp;
         attack = a;
         defense = d;
+        playHp = php;
+        playTotHp = pthp;
+        playAtt = pa;
+        playDef = pd;
     }
     
     public int getHp()
@@ -62,7 +70,6 @@ public class CommonGoblin implements Entity
         Scanner kb = new Scanner(System.in);
         
         Player player = new Player (100, 30, 20);
-        int randMon = (int)(Math.random() * 3);
         int totalHp = player.getHp();
         int damage;
         System.out.println("Player HP: " + player.getHp() + " / " + totalHp);
