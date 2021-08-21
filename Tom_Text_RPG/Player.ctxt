@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Player
+comment1.params=hp\ a\ d
+comment1.target=Player(int,\ int,\ int)
+comment2.params=
+comment2.target=int\ getHp()
+comment3.params=dam
+comment3.target=void\ newHp(int)
+comment4.params=
+comment4.target=void\ heal()
+comment5.params=oDef
+comment5.target=int\ damage(int)
+comment6.params=
+comment6.target=int\ getDef()
+comment7.params=
+comment7.target=void\ addDef()
+numComments=8

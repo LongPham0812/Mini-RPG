@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Entity
+comment1.params=
+comment1.target=int\ getHp()
+comment2.params=dam
+comment2.target=void\ newHp(int)
+comment3.params=oDef
+comment3.target=int\ damage(int)
+comment4.params=
+comment4.target=int\ getDef()
+comment5.params=
+comment5.target=void\ addDef()
+numComments=6
