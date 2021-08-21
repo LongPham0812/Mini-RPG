@@ -10,32 +10,20 @@ public class MainTester
         Scanner kb = new Scanner(System.in);
         boolean stillPlay = true;
         
-        Player player = new Player (100, 30, 20);
-        int totalHp = player.getHp();
-        int contHp = player.getHp();
+        int totalPlayHp = 100;
+        int contPlayHp = totalPlayHp;
+        int ini_playAtt = 30;
+        int ini_playDef = 20;
 
         while (stillPlay)
         {
-            int randMon = (int)(Math.random() * 3);
+            int randMon = (int)Math.random();
 
             if (randMon == 0)
             {
-                CommonGoblin enemyG = new CommonGoblin (90, 20, 15);
+                CommonGoblin enemyG = new CommonGoblin (90, 20, 15, contPlayHp, totalPlayHp, ini_playAtt, ini_playDef);
                 System.out.println("Player encountered Common Goblin!");
                 enemyG.fight();
-            }
-            else if (randMon == 1)
-            {
-                Angel enemyA = new Angel (80, 15, 15, contHp);
-                System.out.println("Player encountered Angel!");
-                enemyA.fight();
-                contHp = enemyA.getPlayerHP();
-            }
-            else
-            {
-                RockWall enemyR = new RockWall (100, 15, 25);
-                System.out.println("Player encountered RockWall!");
-                enemyR.fight();
             }
             
             System.out.print("Want to continue playing (Press Y or N; Pressing Y will reset your stats and HP)? ");
