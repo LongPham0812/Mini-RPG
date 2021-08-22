@@ -7,15 +7,15 @@ public class Angel implements Entity
     private int maxHp;
     private int attack;
     private int defense;
-    private int playerHp;
+    private Player play;
     
-    public Angel(int hp, int a, int d, int pHp)
+    public Angel(int hp, int a, int d, Player p)
     {
         hitpoint = hp;
         maxHp = hp;
         attack = a;
         defense = d;
-        playerHp = pHp;
+        play = p;
     }
     
     public int getHp()
@@ -68,12 +68,11 @@ public class Angel implements Entity
     {
         Scanner kb = new Scanner(System.in);
         
-        Player player = new Player (100, 30, 20);
-        int totalHp = player.getHp();
+        int totalHp = play.getHp();
         int damage;
-        System.out.println("Player HP: " + player.getHp() + " / " + totalHp);
+        System.out.println("Player HP: " + play.getHp() + " / " + totalHp);
         
-        while (player.getHp() > 0 || getHp() > 0)
+        while (play.getHp() > 0 || getHp() > 0)
         {
             System.out.print("Attack or Defend (Press A or D)? ");
             String input = kb.nextLine();
@@ -105,12 +104,12 @@ public class Angel implements Entity
             
             if (input.equalsIgnoreCase("D"))
             {
-                player.addDef();
+                play.addDef();
                 System.out.println("Player defended.");
             }
             else
             {
-                damage = player.damage(getDef());
+                damage = play.damage(getDef());
                 newHp(damage);
                 System.out.println("Player attacked and did " + damage + " damage.");
                 
@@ -127,30 +126,25 @@ public class Angel implements Entity
             }
             else
             {
-                damage = damage(player.getDef());
-                player.newHp(damage);
+                damage = damage(play.getDef());
+                play.newHp(damage);
                 System.out.println("Enemy attacked and did " + damage + " damage.");
                 
-                if (player.getHp() < 0)
+                if (play.getHp() < 0)
                 {
                     System.out.println("Player HP: " + "0 / " + totalHp);
                 }
                 else
                 {
-                    System.out.println("Player HP: " + player.getHp() + " / " + totalHp);
+                    System.out.println("Player HP: " + play.getHp() + " / " + totalHp);
                 }
                 
-                if (player.getHp() <= 0)
+                if (play.getHp() <= 0)
                 {
                     System.out.println("Enemy defeated player!");
                     break;
                 }
             }
         }
-    }
-    
-    public int getPlayerHP()
-    {
-        return playerHp;
     }
 }
