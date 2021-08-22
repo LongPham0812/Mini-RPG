@@ -10,10 +10,9 @@ public class MainTester
         Scanner kb = new Scanner(System.in);
         boolean stillPlay = true;
         
-        int totalPlayHp = 100;
-        int contPlayHp = totalPlayHp;
-        int ini_playAtt = 30;
-        int ini_playDef = 20;
+        Player player = new Player (100, 30, 20);
+        int totalHp = player.getHp();
+        int contHp = player.getHp();
 
         while (stillPlay)
         {
@@ -21,7 +20,7 @@ public class MainTester
 
             if (randMon == 0)
             {
-                CommonGoblin enemyG = new CommonGoblin (90, 20, 15, contPlayHp, totalPlayHp, ini_playAtt, ini_playDef);
+                CommonGoblin enemyG = new CommonGoblin (90, 20, 15, player);
                 System.out.println("Player encountered Common Goblin!");
                 enemyG.fight();
             }
