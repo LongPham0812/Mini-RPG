@@ -95,7 +95,7 @@ public class RockWall implements Entity
             }
             else
             {
-                damage = player.damage(getDef());
+                damage = play.damage(getDef());
                 newHp(damage);
                 System.out.println("Player attacked and did " + damage + " damage.");
                 
