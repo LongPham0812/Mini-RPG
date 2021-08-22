@@ -63,11 +63,11 @@ public class CommonGoblin implements Entity
     {
         Scanner kb = new Scanner(System.in);
         
-        int totalHp = p.getHp();
+        int totalHp = play.getHp();
         int damage;
-        System.out.println("Player HP: " + p.getHp() + " / " + totalHp);
+        System.out.println("Player HP: " + play.getHp() + " / " + totalHp);
         
-        while (p.getHp() > 0 || getHp() > 0)
+        while (play.getHp() > 0 || getHp() > 0)
         {
             System.out.print("Attack or Defend (Press A or D)? ");
             String input = kb.nextLine();
@@ -99,12 +99,12 @@ public class CommonGoblin implements Entity
             
             if (input.equalsIgnoreCase("D"))
             {
-                p.addDef();
+                play.addDef();
                 System.out.println("Player defended.");
             }
             else
             {
-                damage = p.damage(getDef());
+                damage = play.damage(getDef());
                 newHp(damage);
                 System.out.println("Player attacked and did " + damage + " damage.");
                 
@@ -117,20 +117,20 @@ public class CommonGoblin implements Entity
             
             if (chanceDecide > 2)
             {
-                damage = damage(p.getDef());
-                p.newHp(damage);
+                damage = damage(play.getDef());
+                play.newHp(damage);
                 System.out.println("Enemy attacked and did " + damage + " damage.");
                 
-                if (p.getHp() < 0)
+                if (play.getHp() < 0)
                 {
                     System.out.println("Player HP: " + "0 / " + totalHp);
                 }
                 else
                 {
-                    System.out.println("Player HP: " + p.getHp() + " / " + totalHp);
+                    System.out.println("Player HP: " + play.getHp() + " / " + totalHp);
                 }
                 
-                if (p.getHp() <= 0)
+                if (play.getHp() <= 0)
                 {
                     System.out.println("Enemy defeated player!");
                     break;
