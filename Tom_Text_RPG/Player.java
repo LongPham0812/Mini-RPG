@@ -51,4 +51,9 @@ public class Player implements Entity
     {
         defense = defense + 3;
     }
+    
+    public void setDef(int setD)
+    {
+        defense = setD;
+    }
 }
