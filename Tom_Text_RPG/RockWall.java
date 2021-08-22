@@ -6,12 +6,14 @@ public class RockWall implements Entity
     private int hitpoint;
     private int attack;
     private int defense;
+    private Player play;
     
-    public RockWall(int hp, int a, int d)
+    public RockWall(int hp, int a, int d, Player p)
     {
         hitpoint = hp;
         attack = a;
         defense = d;
+        play = p;
     }
     
     public int getHp()
@@ -52,13 +54,11 @@ public class RockWall implements Entity
     {
         Scanner kb = new Scanner(System.in);
         
-        Player player = new Player (100, 30, 20);
-        int randMon = (int)(Math.random() * 3);
-        int totalHp = player.getHp();
+        int totalHp = play.getHp();
         int damage;
-        System.out.println("Player HP: " + player.getHp() + " / " + totalHp);
+        System.out.println("Player HP: " + play.getHp() + " / " + totalHp);
         
-        while (player.getHp() > 0 || getHp() > 0)
+        while (play.getHp() > 0 || getHp() > 0)
         {
             System.out.print("Attack or Defend (Press A or D)? ");
             String input = kb.nextLine();
@@ -90,7 +90,7 @@ public class RockWall implements Entity
             
             if (input.equalsIgnoreCase("D"))
             {
-                player.addDef();
+                play.addDef();
                 System.out.println("Player defended.");
             }
             else
@@ -108,20 +108,20 @@ public class RockWall implements Entity
             
             if (chanceDecide > 3)
             {
-                damage = damage(player.getDef());
-                player.newHp(damage);
+                damage = damage(play.getDef());
+                play.newHp(damage);
                 System.out.println("Enemy attacked and did " + damage + " damage.");
                 
-                if (player.getHp() < 0)
+                if (play.getHp() < 0)
                 {
                     System.out.println("Player HP: " + "0 / " + totalHp);
                 }
                 else
                 {
-                    System.out.println("Player HP: " + player.getHp() + " / " + totalHp);
+                    System.out.println("Player HP: " + play.getHp() + " / " + totalHp);
                 }
                 
-                if (player.getHp() <= 0)
+                if (play.getHp() <= 0)
                 {
                     System.out.println("Enemy defeated player!");
                     break;
