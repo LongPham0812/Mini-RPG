@@ -11,18 +11,29 @@ public class MainTester
         boolean stillPlay = true;
         
         Player player = new Player (100, 30, 20);
-        int totalHp = player.getHp();
         int contHp = player.getHp();
 
         while (stillPlay)
         {
-            int randMon = (int)Math.random();
+            int randMon = (int)(Math.random() * 3);
 
             if (randMon == 0)
             {
                 CommonGoblin enemyG = new CommonGoblin (90, 20, 15, player);
                 System.out.println("Player encountered Common Goblin!");
                 enemyG.fight();
+            }
+            else if (randMon == 1)
+            {
+                Angel enemyA = new Angel (80, 15, 15, player);
+                System.out.println("Player encountered Angel!");
+                enemyA.fight();
+            }
+            else
+            {
+                RockWall enemyR = new RockWall (100, 15, 25, player);
+                System.out.println("Player encountered RockWall!");
+                enemyR.fight();
             }
             
             System.out.print("Want to continue playing (Press Y or N; Pressing Y will reset your stats and HP)? ");
