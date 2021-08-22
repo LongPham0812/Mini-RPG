@@ -7,26 +7,28 @@ public class CommonGoblin implements Entity
     private int attack;
     private int defense;
     private Player play;
+    private int playTotHp;
     
-    public CommonGoblin(int hp, int a, int d, Player p)
+    public CommonGoblin(int hp, int a, int d, Player p, int pthp)
     {
         hitpoint = hp;
         attack = a;
         defense = d;
         play = p;
+        playTotHp = pthp;
     }
     
-    public int getHp()
+    private int getHp()
     {
         return hitpoint;
     }
     
-    public void newHp(int dam)
+    private void newHp(int dam)
     {
         hitpoint = hitpoint - dam;
     }
     
-    public int damage(int oDef)
+    private int damage(int oDef)
     {
         int dam;
         int randMult = (int)(Math.random() * 4) + 1;
@@ -49,12 +51,12 @@ public class CommonGoblin implements Entity
         return dam;
     }
     
-    public int getDef()
+    private int getDef()
     {
         return defense;
     }
     
-    public void addDef()
+    private void addDef()
     {
         defense = defense + 3;
     }
@@ -63,12 +65,11 @@ public class CommonGoblin implements Entity
     {
         Scanner kb = new Scanner(System.in);
         
-        int totalHp = play.getHp();
         int damage;
-        System.out.println("Player HP: " + play.getHp() + " / " + totalHp);
         
         while (play.getHp() > 0 || getHp() > 0)
         {
+            System.out.println("Player HP: " + play.getHp() + " / " + playTotHp);
             System.out.print("Attack or Defend (Press A or D)? ");
             String input = kb.nextLine();
             boolean strIn = true;
@@ -123,15 +124,7 @@ public class CommonGoblin implements Entity
                 
                 if (play.getHp() < 0)
                 {
-                    System.out.println("Player HP: " + "0 / " + totalHp);
-                }
-                else
-                {
-                    System.out.println("Player HP: " + play.getHp() + " / " + totalHp);
-                }
-                
-                if (play.getHp() <= 0)
-                {
+                    System.out.println("Player HP: " + "0 / " + playTotHp);
                     System.out.println("Enemy defeated player!");
                     break;
                 }
