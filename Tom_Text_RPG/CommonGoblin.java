@@ -6,20 +6,14 @@ public class CommonGoblin implements Entity
     private int hitpoint;
     private int attack;
     private int defense;
-    private int playHp;
-    private int playAtt;
-    private int playDef;
-    private int playTotHp;
+    private Player play;
     
-    public CommonGoblin(int hp, int a, int d, int php, int pthp, int pa, int pd)
+    public CommonGoblin(int hp, int a, int d, Player p)
     {
         hitpoint = hp;
         attack = a;
         defense = d;
-        playHp = php;
-        playTotHp = pthp;
-        playAtt = pa;
-        playDef = pd;
+        play = p;
     }
     
     public int getHp()
@@ -69,12 +63,11 @@ public class CommonGoblin implements Entity
     {
         Scanner kb = new Scanner(System.in);
         
-        Player player = new Player (100, 30, 20);
-        int totalHp = player.getHp();
+        int totalHp = p.getHp();
         int damage;
-        System.out.println("Player HP: " + player.getHp() + " / " + totalHp);
+        System.out.println("Player HP: " + p.getHp() + " / " + totalHp);
         
-        while (player.getHp() > 0 || getHp() > 0)
+        while (p.getHp() > 0 || getHp() > 0)
         {
             System.out.print("Attack or Defend (Press A or D)? ");
             String input = kb.nextLine();
@@ -106,12 +99,12 @@ public class CommonGoblin implements Entity
             
             if (input.equalsIgnoreCase("D"))
             {
-                player.addDef();
+                p.addDef();
                 System.out.println("Player defended.");
             }
             else
             {
-                damage = player.damage(getDef());
+                damage = p.damage(getDef());
                 newHp(damage);
                 System.out.println("Player attacked and did " + damage + " damage.");
                 
@@ -124,20 +117,20 @@ public class CommonGoblin implements Entity
             
             if (chanceDecide > 2)
             {
-                damage = damage(player.getDef());
-                player.newHp(damage);
+                damage = damage(p.getDef());
+                p.newHp(damage);
                 System.out.println("Enemy attacked and did " + damage + " damage.");
                 
-                if (player.getHp() < 0)
+                if (p.getHp() < 0)
                 {
                     System.out.println("Player HP: " + "0 / " + totalHp);
                 }
                 else
                 {
-                    System.out.println("Player HP: " + player.getHp() + " / " + totalHp);
+                    System.out.println("Player HP: " + p.getHp() + " / " + totalHp);
                 }
                 
-                if (player.getHp() <= 0)
+                if (p.getHp() <= 0)
                 {
                     System.out.println("Enemy defeated player!");
                     break;
