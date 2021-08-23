@@ -9,9 +9,11 @@ public class MainTester
     {
         Scanner kb = new Scanner(System.in);
         boolean stillPlay = true;
+        boolean LorW = false;
         
-        Player player = new Player (100, 30, 20);
-        int contHp = player.getHp();
+        ini_def = 20;
+        Player player = new Player (100, 30, ini_def);
+        int totalHp = player.getHp();
 
         while (stillPlay)
         {
@@ -19,9 +21,9 @@ public class MainTester
 
             if (randMon == 0)
             {
-                CommonGoblin enemyG = new CommonGoblin (90, 20, 15, player);
+                CommonGoblin enemyG = new CommonGoblin (90, 20, 15, player, totalHp);
                 System.out.println("Player encountered Common Goblin!");
-                enemyG.fight();
+                LorW = enemyG.fight();
             }
             else if (randMon == 1)
             {
@@ -36,28 +38,37 @@ public class MainTester
                 enemyR.fight();
             }
             
-            System.out.print("Want to continue playing (Press Y or N; Pressing Y will reset your stats and HP)? ");
-            String YorN = kb.nextLine();
-            boolean checkIn = true;
-            
-            while (checkIn)
+            if (LorW)
             {
-                switch (YorN)
+                System.out.print("Want to continue playing (Press Y or N; Pressing Y will reset your stats)? ");
+                String YorN = kb.nextLine();
+                boolean checkIn = true;
+                
+                while (checkIn)
                 {
-                    case "Y":
-                    case "y":
-                        checkIn = false;
-                        System.out.println("Resetting stats and HP...");
-                        break;
-                    case "N":
-                    case "n":
-                        checkIn = false;
-                        stillPlay = false;
-                        break;
-                    default:
-                        System.out.print("Please press either Y or N. ");
-                        YorN = kb.nextLine();
+                    switch (YorN)
+                    {
+                        case "Y":
+                        case "y":
+                            System.out.println("Resetting stats...");
+                            player.setDef(ini_def);
+                            break;
+                        case "N":
+                        case "n":
+                            stillPlay = false;
+                            break;
+                        default:
+                            System.out.print("Please press either Y or N. ");
+                            YorN = kb.nextLine();
+                            continue;
+                    }
+                    
+                    checkIn = false;
                 }
+            }
+            else
+            {
+                stillPlay = false;
             }
         }
         
