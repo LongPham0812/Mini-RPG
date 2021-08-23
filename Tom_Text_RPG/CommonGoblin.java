@@ -61,7 +61,7 @@ public class CommonGoblin implements Entity
         defense = defense + 3;
     }
     
-    public void fight()
+    public boolean fight()
     {
         Scanner kb = new Scanner(System.in);
         
@@ -112,7 +112,7 @@ public class CommonGoblin implements Entity
                 if (getHp() <= 0)
                 {
                     System.out.println("Player defeated enemy!");
-                    break;
+                    return true;
                 }
             }
             
@@ -126,7 +126,7 @@ public class CommonGoblin implements Entity
                 {
                     System.out.println("Player HP: " + "0 / " + playTotHp);
                     System.out.println("Enemy defeated player!");
-                    break;
+                    return false;
                 }
             }
         }
