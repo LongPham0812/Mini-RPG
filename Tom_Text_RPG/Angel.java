@@ -8,27 +8,29 @@ public class Angel implements Entity
     private int attack;
     private int defense;
     private Player play;
+    private int playTotHp;
     
-    public Angel(int hp, int a, int d, Player p)
+    public Angel(int hp, int a, int d, Player p, int pthp)
     {
         hitpoint = hp;
         maxHp = hp;
         attack = a;
         defense = d;
         play = p;
+        playTotHp = pthp;
     }
     
-    public int getHp()
+    private int getHp()
     {
         return hitpoint;
     }
     
-    public void newHp(int dam)
+    private void newHp(int dam)
     {
         hitpoint = hitpoint - dam;
     }
     
-    public void heal()
+    private void heal()
     {
         int randHeal = (int)(Math.random() * 6) + 10;
         
@@ -41,7 +43,7 @@ public class Angel implements Entity
         System.out.println("Enemy healed " + randHeal + " HP!");
     }
     
-    public int damage(int oDef)
+    private int damage(int oDef)
     {
         int critChance = (int)(Math.random() * 100);
         double randMult = Math.random() + 4;
@@ -54,26 +56,25 @@ public class Angel implements Entity
         return (int)((2 * attack / oDef) * randMult) + 1;
     }
     
-    public int getDef()
+    private int getDef()
     {
         return defense;
     }
     
-    public void addDef()
+    private void addDef()
     {
         defense = defense + 2;
     }
     
-    public void fight()
+    public boolean fight()
     {
         Scanner kb = new Scanner(System.in);
         
-        int totalHp = play.getHp();
         int damage;
-        System.out.println("Player HP: " + play.getHp() + " / " + totalHp);
         
         while (play.getHp() > 0 || getHp() > 0)
         {
+            System.out.println("Player HP: " + play.getHp() + " / " + playTotHp);
             System.out.print("Attack or Defend (Press A or D)? ");
             String input = kb.nextLine();
             boolean strIn = true;
@@ -116,7 +117,7 @@ public class Angel implements Entity
                 if (getHp() <= 0)
                 {
                     System.out.println("Player defeated enemy!");
-                    break;
+                    return true;
                 }
             }
             
@@ -130,19 +131,11 @@ public class Angel implements Entity
                 play.newHp(damage);
                 System.out.println("Enemy attacked and did " + damage + " damage.");
                 
-                if (play.getHp() < 0)
-                {
-                    System.out.println("Player HP: " + "0 / " + totalHp);
-                }
-                else
-                {
-                    System.out.println("Player HP: " + play.getHp() + " / " + totalHp);
-                }
-                
                 if (play.getHp() <= 0)
                 {
+                    System.out.println("Player HP: " + "0 / " + playTotHp);
                     System.out.println("Enemy defeated player!");
-                    break;
+                    return false;
                 }
             }
         }
