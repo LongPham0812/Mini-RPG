@@ -122,7 +122,7 @@ public class CommonGoblin implements Entity
                 play.newHp(damage);
                 System.out.println("Enemy attacked and did " + damage + " damage.");
                 
-                if (play.getHp() < 0)
+                if (play.getHp() <= 0)
                 {
                     System.out.println("Player HP: " + "0 / " + playTotHp);
                     System.out.println("Enemy defeated player!");
