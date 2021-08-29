@@ -1,8 +1,5 @@
 import java.util.*;
 
-// add player info in monster classes and return player info after fight
-// to tester classes?
-
 public class MainTester
 {
     public static void main(String[] args)
@@ -27,9 +24,9 @@ public class MainTester
             }
             else if (randMon == 1)
             {
-                Angel enemyA = new Angel (80, 15, 15, player);
+                Angel enemyA = new Angel (80, 15, 15, player, totalHp);
                 System.out.println("Player encountered Angel!");
-                enemyA.fight();
+                LorW = enemyA.fight();
             }
             else
             {
